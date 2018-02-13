@@ -16,6 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from rest_framework import routers
+
+from ezmeals.api.views import MealViewSet
+
+
+# Base Django URLs
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
+
+# DRF URLs
+router = routers.SimpleRouter()
+router.register(r'api/meal', MealViewSet)
+urlpatterns += router.urls
